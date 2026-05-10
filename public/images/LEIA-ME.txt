@@ -1,0 +1,1 @@
+Coloque suas imagens nesta pasta. Você pode referenciá-las no código usando o caminho `/images/nome-da-sua-imagem.png`.
