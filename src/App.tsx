@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useState, ReactNode, useEffect } from 'react';
+import { useState, ReactNode, useEffect, useRef } from 'react';
 import {
   Flame,
   Minus,
@@ -12,6 +12,8 @@ import {
   ArrowLeft,
   Lock,
   ShieldCheck,
+  Play,
+  Truck,
 } from 'lucide-react';
 
 // ==========================================
@@ -26,6 +28,79 @@ const AFFILIATE_LINKS = {
 // ==========================================
 // COMPONENTES REUTILIZÁVEIS
 // ==========================================
+
+function VideoCard({ src, title }: { src: string; title: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  return (
+    <div className="relative w-full aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_0_30px_rgba(234,179,8,0.1)] border border-zinc-800 bg-zinc-950 group">
+      {!isPlaying && (
+        <div 
+          className="absolute inset-0 z-30 cursor-pointer flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-black to-zinc-950 transition-all"
+          onClick={handlePlay}
+        >
+          {/* Fundo abstrato inovador */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,179,8,0.15)_0,transparent_70%)] group-hover:scale-125 transition-transform duration-700"></div>
+          <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==')]"></div>
+          
+          <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(234,179,8,0.4)] transform group-hover:scale-110 group-hover:shadow-[0_0_60px_rgba(234,179,8,0.6)] transition-all duration-300 relative z-10 mb-8">
+             <Play fill="black" className="w-8 h-8 text-black ml-1" />
+          </div>
+          
+          <div className="relative z-10 flex flex-col items-center px-6 text-center">
+            <span className="text-yellow-500 font-black text-2xl mb-3 tracking-tight uppercase drop-shadow-md">{title}</span>
+            <span className="text-zinc-300 font-bold tracking-widest text-xs uppercase bg-black/60 px-5 py-2 rounded-full border border-yellow-500/20 backdrop-blur-md shadow-lg">
+              Clique para assistir
+            </span>
+          </div>
+        </div>
+      )}
+      <video 
+        ref={videoRef}
+        src={src} 
+        className="w-full h-full object-cover relative z-20 bg-black"
+        controls={isPlaying}
+        playsInline
+        preload="metadata"
+        onEnded={() => setIsPlaying(false)}
+        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+      />
+    </div>
+  );
+}
+
+function FaqItem({ question, children }: { question: string; children: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900/50 mb-4 transition-all duration-300">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+      >
+        <span className="font-bold text-lg md:text-xl pr-4 text-zinc-100">{question}</span>
+        {isOpen ? <ChevronUp className="flex-shrink-0 text-yellow-500 w-6 h-6" /> : <ChevronDown className="flex-shrink-0 text-zinc-500 w-6 h-6" />}
+      </button>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          className="px-6 pb-6 text-zinc-400 leading-relaxed space-y-4"
+        >
+          {children}
+        </motion.div>
+      )}
+    </div>
+  );
+}
 
 function FadeIn({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
   return (
@@ -196,6 +271,24 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-yellow-500/30">
       
+      {/* TOP ANNOUNCEMENT BAR */}
+      <div className="bg-yellow-500 text-black py-2 px-4 relative z-50">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-2 text-sm md:text-base font-bold">
+          <span className="flex items-center gap-2">
+            <Truck className="w-5 h-5" /> 
+            COMPROU E QUER SABER ONDE ESTÁ SEU PEDIDO?
+          </span>
+          <a 
+            href="https://rastreamento.correios.com.br/app/index.php" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-black text-yellow-500 px-4 py-1 rounded-full text-xs hover:bg-zinc-900 transition-colors uppercase tracking-wider flex items-center gap-1"
+          >
+            Rastrear Agora
+          </a>
+        </div>
+      </div>
+
       {/* 1. HERO SECTION */}
       <section className="relative pt-16 pb-32 px-4 md:px-8 overflow-hidden bg-black">
         {/* Background gradient flares */}
@@ -433,6 +526,39 @@ export default function App() {
         </div>
       </section>
 
+      {/* 6.1 AVALIAÇÕES EM VÍDEO */}
+      <section className="py-24 px-4 md:px-8 bg-zinc-950 border-t border-zinc-900 relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+        <div className="max-w-6xl mx-auto flex flex-col items-center">
+          <FadeIn>
+            <h2 className="text-3xl md:text-5xl font-black mb-4 text-center">
+              Quem Usou, <span className="text-yellow-500">Aprovou</span>
+            </h2>
+            <p className="text-zinc-400 text-center max-w-2xl mx-auto mb-16 text-lg md:text-xl">
+              Veja o que nossas clientes estão dizendo sobre os resultados reais que tiveram com o <strong className="text-yellow-500 font-bold">Black Ultra</strong>.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
+            {[
+              { src: '/4.mp4', title: 'Avaliação 1' },
+              { src: '/10.mp4', title: 'Avaliação 2' },
+              { src: '/14.mp4', title: 'Avaliação 3' }
+            ].map((video, i) => (
+              <FadeIn key={i} delay={i * 0.15} className="flex flex-col items-center">
+                <VideoCard src={video.src} title={video.title} />
+              </FadeIn>
+            ))}
+          </div>
+          
+          <FadeIn delay={0.4} className="mt-16 text-center z-30 relative">
+            <LightningCTAButton href="#ofertas">
+              QUERO TER RESULTADOS ASSIM
+            </LightningCTAButton>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* 6.5 COMO USAR */}
       <section className="py-24 px-4 md:px-8 bg-black relative border-b border-zinc-900">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
@@ -651,6 +777,43 @@ export default function App() {
                 </div>
              </div>
            </FadeIn>
+        </div>
+      </section>
+
+      {/* 8.5 FAQ */}
+      <section className="py-24 px-4 md:px-8 bg-zinc-950 border-t border-zinc-900 relative">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <h2 className="text-3xl md:text-5xl font-black mb-12 text-center">
+              Perguntas <span className="text-yellow-500">Frequentes</span>
+            </h2>
+          </FadeIn>
+          
+          <FadeIn delay={0.2} className="space-y-4">
+            <FaqItem question="Qual o prazo de entrega?">
+              <p>O prazo de entrega é de 10 dias úteis, mas pedimos compreensão pois podemos ter pequenos atrasos na entrega dependendo da região e logística dos Correios.</p>
+            </FaqItem>
+
+            <FaqItem question="Como recebo meu código de rastreamento?">
+              <p>O código de rastreamento é enviado em até 3 dias úteis após a compra diretamente para o e-mail cadastrado no momento do pedido. Fique de olho também na sua caixa de spam.</p>
+            </FaqItem>
+
+            <FaqItem question="O Black Ultra possui alguma contraindicação?">
+              <p>Por ser um produto potente voltado para acelerar o metabolismo de carboidratos e gorduras, ele possui algumas restrições de uso. O produto não é indicado para:</p>
+              <ul className="list-disc pl-5 mt-2 space-y-2">
+                <li>Gestantes, lactantes (até 6 meses) e crianças.</li>
+                <li>Pessoas alérgicas a crustáceos (camarão e frutos do mar), pois a fórmula contém Quitosana.</li>
+                <li>Indivíduos com problemas renais (devido à presença de Cromo).</li>
+                <li>Pessoas com sensibilidade gastrointestinal, pois a fibra Psyllium pode causar desconforto temporário em organismos mais sensíveis.</li>
+              </ul>
+            </FaqItem>
+
+            <div className="mt-12 bg-zinc-900 p-6 rounded-2xl border border-zinc-800 text-center">
+               <p className="text-zinc-300">
+                 <strong>Dúvidas sobre Rastreio e Postagens:</strong> fale com THAMIRIS no WhatsApp <a href="https://wa.me/5531994202157" target="_blank" rel="noopener noreferrer" className="text-yellow-500 font-bold hover:underline">(31) 99420-2157</a>
+               </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
