@@ -559,79 +559,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6.5 COMO USAR */}
-      <section className="py-24 px-4 md:px-8 bg-black relative border-b border-zinc-900">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <FadeIn>
-            <h2 className="text-4xl md:text-6xl font-black mb-1 text-yellow-500 uppercase tracking-tight text-center">
-              Como Usar
-            </h2>
-            <h3 className="text-xl md:text-3xl font-medium tracking-tight mb-16 text-white text-center uppercase">
-              Seu <span className="font-black">Black Ultra</span> Corretamente
-            </h3>
-          </FadeIn>
-
-          <div className="space-y-12 w-full max-w-3xl mb-16">
-            <FadeIn delay={0.1}>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
-                    1
-                  </div>
-                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
-                </div>
-                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
-                  Use <strong className="text-yellow-500">1 cápsula por dia</strong>, de preferência antes do almoço em jejum, para potencializar os resultados.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
-                    2
-                  </div>
-                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
-                </div>
-                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
-                  <strong className="text-yellow-500">Tome 2,5L de água</strong> todos os dias, dividindo essa quantidade ao longo do dia; a hidratação é fundamental durante o tratamento.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
-                    3
-                  </div>
-                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
-                </div>
-                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
-                  Mantenha uma alimentação balanceada, comendo de 3 a 4 vezes por dia, e evite pular refeições ou deixar de comer.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.4} className="w-full max-w-2xl">
-            <a 
-              href="https://wa.me/553733515181?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Black%20Ultra"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-zinc-900 hover:bg-zinc-800 transition-colors border border-zinc-800 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 shadow-xl group"
-            >
-              <h4 className="text-yellow-500 font-black text-3xl md:text-4xl uppercase tracking-tight">Dúvidas?</h4>
-              <div className="h-px w-16 md:w-px md:h-12 bg-zinc-700"></div>
-              <p className="text-white text-lg md:text-xl font-medium text-center md:text-left leading-tight group-hover:text-yellow-400 transition-colors">
-                ME CHAME POR AQUI<br />QUE VOU AJUDAR!
-              </p>
-            </a>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* 7. PRICING / OFFERS */}
       <section id="ofertas" className="py-24 px-4 md:px-8 bg-black relative">
         <div className="absolute inset-x-0 top-0 h-[500px] bg-yellow-500/5 blur-[150px] pointer-events-none"></div>
@@ -742,6 +669,79 @@ export default function App() {
             </FadeIn>
 
           </div>
+        </div>
+      </section>
+
+      {/* 6.5 COMO USAR */}
+      <section className="py-24 px-4 md:px-8 bg-black relative border-b border-zinc-900">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
+          <FadeIn>
+            <h2 className="text-4xl md:text-6xl font-black mb-1 text-yellow-500 uppercase tracking-tight text-center">
+              Como Usar
+            </h2>
+            <h3 className="text-xl md:text-3xl font-medium tracking-tight mb-16 text-white text-center uppercase">
+              Seu <span className="font-black">Black Ultra</span> Corretamente
+            </h3>
+          </FadeIn>
+
+          <div className="space-y-12 w-full max-w-3xl mb-16">
+            <FadeIn delay={0.1}>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
+                    1
+                  </div>
+                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
+                </div>
+                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
+                  Use <strong className="text-yellow-500">1 cápsula por dia</strong>, de preferência antes do almoço em jejum, para potencializar os resultados.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
+                    2
+                  </div>
+                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
+                </div>
+                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
+                  <strong className="text-yellow-500">Tome 2,5L de água</strong> todos os dias, dividindo essa quantidade ao longo do dia; a hidratação é fundamental durante o tratamento.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-yellow-500 text-black font-black text-xl w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0">
+                    3
+                  </div>
+                  <div className="h-[2px] w-full max-w-[200px] bg-gradient-to-r from-yellow-500 to-transparent"></div>
+                </div>
+                <p className="text-xl text-zinc-300 leading-relaxed font-medium">
+                  Mantenha uma alimentação balanceada, comendo de 3 a 4 vezes por dia, e evite pular refeições ou deixar de comer.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.4} className="w-full max-w-2xl">
+            <a 
+              href="https://wa.me/553733515181?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Black%20Ultra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-zinc-900 hover:bg-zinc-800 transition-colors border border-zinc-800 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 shadow-xl group"
+            >
+              <h4 className="text-yellow-500 font-black text-3xl md:text-4xl uppercase tracking-tight">Dúvidas?</h4>
+              <div className="h-px w-16 md:w-px md:h-12 bg-zinc-700"></div>
+              <p className="text-white text-lg md:text-xl font-medium text-center md:text-left leading-tight group-hover:text-yellow-400 transition-colors">
+                ME CHAME POR AQUI<br />QUE VOU AJUDAR!
+              </p>
+            </a>
+          </FadeIn>
         </div>
       </section>
 
